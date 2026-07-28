@@ -24,9 +24,16 @@ __pycache__/
 *.pyc
 .venv/
 venv/
-.env
 .pytest_cache/
 .mypy_cache/
+
+# secrets — never commit these
+.env
+*.env
+**/.env
+.env.*
+*.key
+secrets/
 
 # infra / runtime
 *.pid

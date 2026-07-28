@@ -122,7 +122,7 @@ def node_repair(state, ctx):
               "Find the single root cause and fix it. Return the full new content only for files you change. "
               "Keep the change minimal and within the responsible service. Do not edit test files.")
     state["proposed"] = ctx["llm"].json(
-        "You are a senior engineer fixing a bug. Output a minimal, correct patch.", prompt, schemas.REPAIR, max_tokens=8000)
+        "You are a senior engineer fixing a bug. Output a minimal, correct patch.", prompt, schemas.REPAIR, max_tokens=12000)
     state["attempts"] = state.get("attempts", 0) + 1
     _event(state, "repair", state["proposed"].get("root_cause", "")[:80])
 

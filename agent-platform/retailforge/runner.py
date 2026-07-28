@@ -120,7 +120,7 @@ def run_baseline_a(inc, provider="anthropic", model="claude-sonnet-5", effort="h
                   f"Full source of the affected service(s):\n{blocks}\n\n"
                   "Diagnose the single root cause and fix it. Return full new content only for files you change.")
         state["proposed"] = llm.json("You fix bugs from an incident report in one shot.", prompt,
-                                     schemas.REPAIR, max_tokens=8000)
+                                     schemas.REPAIR, max_tokens=12000)
         graph.node_verify(state, {"incident": inc, "toolbox": tb})
         graph.node_release(state, {"incident": inc, "toolbox": tb})
     finally:

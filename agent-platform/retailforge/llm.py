@@ -1,5 +1,7 @@
 import json
 import os
+import re
+import sys
 
 # per 1M tokens (input, output); intro pricing where it applies
 PRICING = {
@@ -7,6 +9,14 @@ PRICING = {
     "claude-sonnet-5": (2.0, 10.0),
     "claude-haiku-4-5": (1.0, 5.0),
 }
+
+# only these support adaptive thinking + the effort control; haiku 4.5 and older do not
+THINKING_MODELS = ("claude-sonnet-5", "claude-opus-4-8", "claude-opus-4-7",
+                   "claude-opus-4-6", "claude-sonnet-4-6", "claude-fable-5", "claude-mythos-5")
+
+
+def _supports_thinking(model):
+    return any(model.startswith(p) for p in THINKING_MODELS)
 
 
 def cost_of(model, in_tokens, out_tokens):
@@ -32,6 +42,17 @@ class Usage:
                 "output_tokens": self.output_tokens, "cost": round(self.cost, 4)}
 
 
+def _extract_json(raw):
+    text = raw.strip()
+    if text.startswith("```"):
+        text = re.sub(r"^```[a-zA-Z]*\n?", "", text)
+        text = re.sub(r"\n?```$", "", text).strip()
+    start, end = text.find("{"), text.rfind("}")
+    if start != -1 and end != -1:
+        text = text[start:end + 1]
+    return json.loads(text)
+
+
 class AnthropicLLM:
     def __init__(self, model, effort="high"):
         import anthropic
@@ -40,32 +61,28 @@ class AnthropicLLM:
         self.effort = effort
         self.usage = Usage()
 
-    def _track(self, resp):
+    def _create(self, system, user, max_tokens):
+        kw = dict(model=self.model, max_tokens=max_tokens, system=system,
+                  messages=[{"role": "user", "content": user}])
+        if _supports_thinking(self.model):
+            kw["thinking"] = {"type": "adaptive"}
+        resp = self.client.messages.create(**kw)
         u = resp.usage
         self.usage.add(self.model, u.input_tokens, u.output_tokens)
-
-    def text(self, system, user, max_tokens=4000):
-        resp = self.client.messages.create(
-            model=self.model, max_tokens=max_tokens,
-            thinking={"type": "adaptive"},
-            output_config={"effort": self.effort},
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        self._track(resp)
         return "".join(b.text for b in resp.content if b.type == "text")
 
-    def json(self, system, user, schema, max_tokens=4000):
-        resp = self.client.messages.create(
-            model=self.model, max_tokens=max_tokens,
-            thinking={"type": "adaptive"},
-            output_config={"effort": self.effort, "format": {"type": "json_schema", "schema": schema}},
-            system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        self._track(resp)
-        raw = "".join(b.text for b in resp.content if b.type == "text")
-        return json.loads(raw)
+    def text(self, system, user, max_tokens=4000):
+        return self._create(system, user, max_tokens)
+
+    def json(self, system, user, schema, max_tokens=6000):
+        sys_prompt = (system + "\n\nReturn ONLY a single JSON object, no prose and no markdown fences. "
+                      "It must conform to this JSON schema:\n" + json.dumps(schema))
+        raw = self._create(sys_prompt, user, max_tokens)
+        try:
+            return _extract_json(raw)
+        except Exception as e:
+            print(f"[llm] json parse failed ({e}); returning empty", file=sys.stderr)
+            return _empty_for_schema(schema)
 
 
 # deterministic offline stand-in: exercises the whole graph without a key or spend.
@@ -79,17 +96,14 @@ class MockLLM:
         self.usage.add(self.model, len(user) // 4, 50)
         return "mock response"
 
-    def json(self, system, user, schema, max_tokens=4000):
+    def json(self, system, user, schema, max_tokens=6000):
         self.usage.add(self.model, len(user) // 4, 50)
         return _empty_for_schema(schema)
 
 
 def _empty_for_schema(schema):
     if schema.get("type") == "object":
-        out = {}
-        for k, v in schema.get("properties", {}).items():
-            out[k] = _empty_for_schema(v)
-        return out
+        return {k: _empty_for_schema(v) for k, v in schema.get("properties", {}).items()}
     if schema.get("type") == "array":
         return []
     if schema.get("type") == "string":

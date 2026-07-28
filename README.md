@@ -57,16 +57,39 @@ There are 8 incidents today across checkout, loyalty, pricing, and inventory, in
 
 ## what the current run shows
 
-I ran the whole matrix in mock mode (no API key, no cost). Resolution and root-cause accuracy are the two metrics that genuinely need a reasoning model, so they read as 0 for the mock configs and that is honest. Everything else is real and already tells a story:
+I ran the full matrix for real across two models (claude-sonnet-5 and claude-haiku-4-5), all 8 incidents, one repeat each, about $1.60 total. Here is end-to-end resolution (verified, no human) by configuration:
 
-| config | resolution | top-5 retrieval recall | median tool calls | reviewer |
-| --- | --- | --- | --- | --- |
-| baseline_a | 0% (needs a real model) | 0% | 2 | none |
-| baseline_b | 0% (needs a real model) | 100% | 6 | none |
-| retailforge | 0% (needs a real model) | 100% | 10 | rejects empty patches |
-| oracle | 100% | 100% | 2 | none |
+| config | sonnet-5 | haiku-4-5 |
+| --- | --- | --- |
+| baseline_a (single shot, whole file in context) | 100% | 88% |
+| baseline_b (retrieval + one repair) | 88% | 75% |
+| retailforge (full pipeline) | 75% | 50% |
+| oracle (ceiling) | 100% | n/a |
 
-Retrieval works and separates the configs (baseline_a retrieves nothing, the others find the right file). Tool usage climbs as the pipeline deepens. The reviewer correctly rejects empty patches. And the oracle proves that a correct patch scores as resolved, all tests green. The one thing left is running it with a real model to get the resolution numbers, which is cheap (roughly a nickel per incident on the full pipeline).
+The honest headline is that the simplest baseline won. A single model with the whole affected file pasted into context resolved all 8. The full pipeline resolved 6. Two reasons, and I am not going to spin them:
+
+1. The benchmark is too easy for the pipeline to earn its keep. These bugs are localized and the services are small enough that the whole file fits in the prompt, so retrieval and reproduction add nothing the model did not already have. Retrieval only starts to matter when the codebase is too big to fit in context, which mine is not yet.
+2. The independent reviewer cost me a resolution. The pipeline produced a correct, passing patch for `prc-promotions-stack` and the reviewer rejected it anyway. Verification is not free when the reviewer is imperfect.
+
+So the real result is not "multi-agent beats single-shot." It is that on small localized bugs, full-context single-shot is already at 100%, the multi-agent pipeline sits at 75% and runs about 2.4x slower, and deterministic review introduced one false rejection. That is a more interesting finding than a rigged win, and it points straight at the next step: make the benchmark hard in the ways that break single-shot, meaning bugs that span multiple files, repos too large to fit in context, and incidents where a wrong fix is expensive so verification pays off.
+
+What is solid regardless of config: retrieval put the right file in the top 5 every time it was used (100%), root-cause identification was 100% on the pipeline, reproduction was 100%, and the oracle confirms the scorer is sound. The machinery is real. The benchmark just needs to get harder before the pipeline can prove its point.
+
+### full metrics, retailforge with claude-sonnet-5
+
+| metric | value |
+| --- | --- |
+| scope | 6 modules (5 services + shared lib), 79 files, 257 code chunks |
+| benchmark | 8 seeded incidents |
+| diagnosis (root cause) | 100% |
+| retrieval (top-5) | 100% |
+| reproduction | 100% |
+| patching (compiled + all tests pass) | 88% |
+| end-to-end (resolved, no human) | 75% |
+| speed (median to verified patch) | 46s |
+| efficiency | 7.4 tool calls, 4.2 model calls per incident |
+| reliability | 12.5% reviewer rejection, 12.5% unsupported answers |
+| scale | 48 agent runs completed |
 
 ## running it
 
@@ -112,4 +135,4 @@ infrastructure/   docker compose and a local run script
 
 ## status
 
-The backend, the benchmark, the agent pipeline, the evaluation harness, and both frontends are built and, where it is possible without spending money, verified. The retail tests pass, the incidents reproduce, the scorer is proven with the oracle, and the full graph runs end to end in mock mode. The remaining work is the real model run for the headline numbers, a literature and novelty check, and growing the incident set. This is a work in progress, but the machinery is real and it runs.
+The backend, the benchmark, the agent pipeline, the evaluation harness, and both frontends are built and verified. The retail tests pass, all 8 incidents reproduce, the scorer is proven with the oracle, and the full ablation has been run for real across two models. The next steps are the ones the results point to: make the benchmark harder (multi-file bugs, repos that do not fit in context, costly-error incidents so verification pays off), tune the reviewer so it stops rejecting correct patches, add a real test-generation step, and do the literature and novelty check. This is a work in progress, but the machinery is real, it runs, and the numbers are honest.
