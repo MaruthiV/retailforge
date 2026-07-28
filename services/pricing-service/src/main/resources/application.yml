@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: pricing-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/retailforge
+    username: retailforge
+    password: retailforge
+  jpa:
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+      data-locations: classpath:seed.sql
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

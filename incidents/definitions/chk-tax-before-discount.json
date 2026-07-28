@@ -1,0 +1,29 @@
+{
+  "id": "chk-tax-before-discount",
+  "title": "Tax calculated before discount is applied",
+  "category": "checkout",
+  "severity": "high",
+  "affected_services": ["checkout"],
+  "incident_report": "A customer complained their receipt charged more tax than expected when using a coupon. The tax seems to be computed on the full price instead of the discounted price.",
+  "symptoms": [
+    "tax higher than expected on discounted orders",
+    "final total slightly too high",
+    "only happens when a coupon is applied"
+  ],
+  "expected_root_cause": "tax is computed on the pre-discount subtotal instead of the discounted (taxable) amount",
+  "expected_files": [
+    "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+  ],
+  "root_cause_keywords": ["tax", "discount", "order", "taxable", "subtotal"],
+  "fail_to_pass": {
+    "module": "checkout-service",
+    "test": "com.retailforge.checkout.CheckoutFlowTest#appliesDiscountBeforeTax"
+  },
+  "mutations": [
+    {
+      "file": "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java",
+      "search": "        BigDecimal tax = Money.percentOf(taxable, TAX_RATE);",
+      "replace": "        BigDecimal tax = Money.percentOf(priced.subtotal(), TAX_RATE);"
+    }
+  ]
+}

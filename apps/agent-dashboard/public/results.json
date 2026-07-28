@@ -1,0 +1,1030 @@
+{
+  "results": [
+    {
+      "incident": "chk-loyalty-double",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 11019,
+        "output_tokens": 50,
+        "cost": 0.0338
+      },
+      "seconds": 7.9,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-tax-before-discount",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 7900,
+        "output_tokens": 50,
+        "cost": 0.0245
+      },
+      "seconds": 7.1,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-double-decrement",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2781,
+        "output_tokens": 50,
+        "cost": 0.0091
+      },
+      "seconds": 7.0,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-no-release",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2863,
+        "output_tokens": 50,
+        "cost": 0.0093
+      },
+      "seconds": 7.0,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-oversell",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2854,
+        "output_tokens": 50,
+        "cost": 0.0093
+      },
+      "seconds": 6.9,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "loy-double-earn",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 3236,
+        "output_tokens": 50,
+        "cost": 0.0105
+      },
+      "seconds": 6.9,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-expired-coupon",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2529,
+        "output_tokens": 50,
+        "cost": 0.0083
+      },
+      "seconds": 7.0,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-promotions-stack",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": false,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2563,
+        "output_tokens": 50,
+        "cost": 0.0084
+      },
+      "seconds": 7.0,
+      "timeline": [
+        "verify",
+        "release"
+      ],
+      "config": "baseline_a",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-loyalty-double",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 8,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2420,
+        "output_tokens": 50,
+        "cost": 0.008
+      },
+      "seconds": 7.2,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-tax-before-discount",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 7,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 3014,
+        "output_tokens": 50,
+        "cost": 0.0098
+      },
+      "seconds": 7.2,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-double-decrement",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 5,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1691,
+        "output_tokens": 50,
+        "cost": 0.0058
+      },
+      "seconds": 7.0,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-no-release",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 5,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1394,
+        "output_tokens": 50,
+        "cost": 0.0049
+      },
+      "seconds": 7.1,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-oversell",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 5,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1384,
+        "output_tokens": 50,
+        "cost": 0.0049
+      },
+      "seconds": 7.4,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "loy-double-earn",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+      ],
+      "tool_calls": 7,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1901,
+        "output_tokens": 50,
+        "cost": 0.0065
+      },
+      "seconds": 7.5,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-expired-coupon",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+      ],
+      "tool_calls": 7,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 2057,
+        "output_tokens": 50,
+        "cost": 0.0069
+      },
+      "seconds": 8.2,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-promotions-stack",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+      ],
+      "tool_calls": 5,
+      "usage": {
+        "calls": 1,
+        "input_tokens": 1139,
+        "output_tokens": 50,
+        "cost": 0.0042
+      },
+      "seconds": 7.4,
+      "timeline": [
+        "retriever",
+        "repair",
+        "verify",
+        "release"
+      ],
+      "config": "baseline_b",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-loyalty-double",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 13,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 5993,
+        "output_tokens": 300,
+        "cost": 0.021
+      },
+      "seconds": 10.8,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-tax-before-discount",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 12,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 7135,
+        "output_tokens": 300,
+        "cost": 0.0245
+      },
+      "seconds": 12.3,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-double-decrement",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 8,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 4461,
+        "output_tokens": 300,
+        "cost": 0.0165
+      },
+      "seconds": 10.3,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-no-release",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 8,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 3895,
+        "output_tokens": 300,
+        "cost": 0.0148
+      },
+      "seconds": 10.1,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-oversell",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 8,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 3835,
+        "output_tokens": 300,
+        "cost": 0.0146
+      },
+      "seconds": 10.3,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "loy-double-earn",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+      ],
+      "tool_calls": 12,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 4905,
+        "output_tokens": 300,
+        "cost": 0.0178
+      },
+      "seconds": 10.2,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-expired-coupon",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+      ],
+      "tool_calls": 12,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 5156,
+        "output_tokens": 300,
+        "cost": 0.0186
+      },
+      "seconds": 10.2,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-promotions-stack",
+      "resolved": false,
+      "fail_to_pass": false,
+      "suite_green": false,
+      "reviewer_approved": false,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 0,
+      "root_cause_correct": false,
+      "files_changed": [],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+      ],
+      "tool_calls": 8,
+      "usage": {
+        "calls": 6,
+        "input_tokens": 3385,
+        "output_tokens": 300,
+        "cost": 0.0132
+      },
+      "seconds": 10.3,
+      "timeline": [
+        "intake",
+        "planner",
+        "retriever",
+        "reproducer",
+        "repair",
+        "reviewer",
+        "repair",
+        "reviewer",
+        "verify",
+        "release"
+      ],
+      "config": "retailforge",
+      "model": "mock",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-loyalty-double",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 3,
+      "root_cause_correct": true,
+      "files_changed": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 7.2,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "chk-tax-before-discount",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 4,
+      "root_cause_correct": true,
+      "files_changed": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "expected_files": [
+        "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 7.2,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-double-decrement",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 3,
+      "root_cause_correct": true,
+      "files_changed": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 6.9,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-no-release",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 2,
+      "root_cause_correct": true,
+      "files_changed": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 6.9,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "inv-oversell",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 3,
+      "root_cause_correct": true,
+      "files_changed": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "expected_files": [
+        "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 7.1,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "loy-double-earn",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 3,
+      "root_cause_correct": true,
+      "files_changed": [
+        "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+      ],
+      "expected_files": [
+        "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 7.0,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-expired-coupon",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 4,
+      "root_cause_correct": true,
+      "files_changed": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+      ],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 6.9,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    },
+    {
+      "incident": "prc-promotions-stack",
+      "resolved": true,
+      "fail_to_pass": true,
+      "suite_green": true,
+      "reviewer_approved": true,
+      "retrieval_top5_hit": true,
+      "root_cause_keyword_hits": 3,
+      "root_cause_correct": true,
+      "files_changed": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+      ],
+      "expected_files": [
+        "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+      ],
+      "tool_calls": 2,
+      "usage": {},
+      "seconds": 6.9,
+      "timeline": [
+        "verify"
+      ],
+      "config": "oracle",
+      "model": "oracle",
+      "repeat": 0
+    }
+  ],
+  "summary": {
+    "baseline_a/mock": {
+      "n": 8,
+      "resolution_rate": 0.0,
+      "patch_fail_to_pass_rate": 0.0,
+      "root_cause_accuracy": 0.0,
+      "retrieval_top5_recall": 0.0,
+      "median_tool_calls": 2.0,
+      "median_seconds": 7.0,
+      "median_cost_usd": 0.0093,
+      "total_cost_usd": 0.1132,
+      "reviewer_rejection_rate": 0.0
+    },
+    "baseline_b/mock": {
+      "n": 8,
+      "resolution_rate": 0.0,
+      "patch_fail_to_pass_rate": 0.0,
+      "root_cause_accuracy": 0.0,
+      "retrieval_top5_recall": 1.0,
+      "median_tool_calls": 6.0,
+      "median_seconds": 7.3,
+      "median_cost_usd": 0.0061,
+      "total_cost_usd": 0.051,
+      "reviewer_rejection_rate": 0.0
+    },
+    "oracle/oracle": {
+      "n": 8,
+      "resolution_rate": 1.0,
+      "patch_fail_to_pass_rate": 1.0,
+      "root_cause_accuracy": 1.0,
+      "retrieval_top5_recall": 1.0,
+      "median_tool_calls": 2.0,
+      "median_seconds": 7.0,
+      "median_cost_usd": 0.0,
+      "total_cost_usd": 0.0,
+      "reviewer_rejection_rate": 0.0
+    },
+    "retailforge/mock": {
+      "n": 8,
+      "resolution_rate": 0.0,
+      "patch_fail_to_pass_rate": 0.0,
+      "root_cause_accuracy": 0.0,
+      "retrieval_top5_recall": 1.0,
+      "median_tool_calls": 10.0,
+      "median_seconds": 10.3,
+      "median_cost_usd": 0.0171,
+      "total_cost_usd": 0.141,
+      "reviewer_rejection_rate": 1.0
+    }
+  }
+}

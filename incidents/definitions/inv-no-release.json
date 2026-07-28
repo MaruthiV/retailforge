@@ -1,0 +1,29 @@
+{
+  "id": "inv-no-release",
+  "title": "Cancelled transaction does not release reserved stock",
+  "category": "inventory",
+  "severity": "high",
+  "affected_services": ["inventory"],
+  "incident_report": "After a checkout is cancelled, the reserved stock is never returned to the available pool, so inventory slowly leaks and items appear out of stock when they are not.",
+  "symptoms": [
+    "available stock not restored after release",
+    "reserved units stay held after cancellation",
+    "inventory drifts down over time"
+  ],
+  "expected_root_cause": "the release path marks the reservation released but never adds the held quantity back to available stock",
+  "expected_files": [
+    "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+  ],
+  "root_cause_keywords": ["release", "available", "restore", "reserved", "cancel"],
+  "fail_to_pass": {
+    "module": "inventory-service",
+    "test": "com.retailforge.inventory.InventoryServiceTest#releaseRestoresStock"
+  },
+  "mutations": [
+    {
+      "file": "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java",
+      "search": "            level.release(r.getQuantity());",
+      "replace": "            // release skipped"
+    }
+  ]
+}

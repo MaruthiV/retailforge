@@ -1,0 +1,29 @@
+{
+  "id": "inv-double-decrement",
+  "title": "Duplicate reserve event decrements stock twice",
+  "category": "inventory",
+  "severity": "high",
+  "affected_services": ["inventory"],
+  "incident_report": "When a reserve event is redelivered, inventory is decremented twice for the same transaction, causing stock to drop lower than it should.",
+  "symptoms": [
+    "available stock too low",
+    "two reservations for one transaction and product",
+    "happens on event redelivery"
+  ],
+  "expected_root_cause": "reserve is not idempotent; it does not detect an existing reservation for the transaction and product before decrementing again",
+  "expected_files": [
+    "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+  ],
+  "root_cause_keywords": ["idempotency", "duplicate", "reservation", "reserve", "decrement"],
+  "fail_to_pass": {
+    "module": "inventory-service",
+    "test": "com.retailforge.inventory.InventoryServiceTest#duplicateReserveDoesNotDecrementTwice"
+  },
+  "mutations": [
+    {
+      "file": "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java",
+      "search": "        List<Reservation> existing = reservations.findByTransactionIdAndStatus(transactionId, Reservation.Status.RESERVED);\n        for (Reservation r : existing) {\n            if (r.getProductId().equals(productId)) {\n                log.info(\"reservation already exists for txn={} product={}\", transactionId, productId);\n                return r;\n            }\n        }\n",
+      "replace": "        // idempotency removed: duplicate reserve events now decrement twice\n"
+    }
+  ]
+}

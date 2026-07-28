@@ -1,0 +1,14 @@
+[project]
+name = "retailforge-agent"
+version = "0.1.0"
+description = "Agentic debugging and repair platform for RetailForge"
+requires-python = ">=3.10"
+dependencies = [
+    "anthropic>=0.40.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[tool.setuptools.packages.find]
+include = ["retailforge*", "evaluation*"]

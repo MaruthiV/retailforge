@@ -1,0 +1,29 @@
+{
+  "id": "prc-promotions-stack",
+  "title": "Two incompatible promotions stack on one order",
+  "category": "promotion",
+  "severity": "medium",
+  "affected_services": ["pricing"],
+  "incident_report": "A customer got both a percentage discount and a buy-one-get-one applied to the same order. Only the single best promotion should apply, they are not supposed to stack.",
+  "symptoms": [
+    "discount larger than any single promotion",
+    "multiple promotions applied together",
+    "order total lower than expected"
+  ],
+  "expected_root_cause": "the pricing service sums applicable promotion discounts instead of taking the single best one",
+  "expected_files": [
+    "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java"
+  ],
+  "root_cause_keywords": ["promotion", "stack", "best", "max", "discount"],
+  "fail_to_pass": {
+    "module": "pricing-service",
+    "test": "com.retailforge.pricing.PricingServiceTest#promotionsDoNotStack"
+  },
+  "mutations": [
+    {
+      "file": "pricing-service/src/main/java/com/retailforge/pricing/service/PricingService.java",
+      "search": "            if (d.compareTo(best) > 0) best = d;",
+      "replace": "            best = Money.add(best, d);"
+    }
+  ]
+}

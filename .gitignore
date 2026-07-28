@@ -31,3 +31,8 @@ venv/
 # infra / runtime
 *.pid
 pgdata/
+
+# generated eval output (keep curated results out of noise)
+eval-results-*.json
+results.json
+!apps/agent-dashboard/public/results.json

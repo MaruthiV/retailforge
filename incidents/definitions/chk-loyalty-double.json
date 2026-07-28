@@ -1,0 +1,29 @@
+{
+  "id": "chk-loyalty-double",
+  "title": "Duplicate loyalty points after checkout retry",
+  "category": "loyalty",
+  "severity": "high",
+  "affected_services": ["checkout", "loyalty"],
+  "incident_report": "Customers using a loyalty coupon are occasionally receiving loyalty points twice after checkout retries. It seems to happen when the payment response is slow and the cashier submits the checkout a second time.",
+  "symptoms": [
+    "loyalty points applied twice",
+    "occurs after a checkout is submitted again",
+    "a second transaction is created for the same cart"
+  ],
+  "expected_root_cause": "checkout is missing an idempotency guard for an already completed cart, so a retry re-runs completion and awards loyalty a second time",
+  "expected_files": [
+    "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java"
+  ],
+  "root_cause_keywords": ["idempotency", "retry", "duplicate", "checked out", "guard"],
+  "fail_to_pass": {
+    "module": "checkout-service",
+    "test": "com.retailforge.checkout.CheckoutFlowTest#retryingCheckoutDoesNotAwardLoyaltyTwice"
+  },
+  "mutations": [
+    {
+      "file": "checkout-service/src/main/java/com/retailforge/checkout/service/CheckoutService.java",
+      "search": "        if (cart.getStatus() == Cart.Status.CHECKED_OUT) {\n            log.info(\"cart {} already checked out, returning existing transaction\", cartId);\n            return transactions.findFirstByCartId(cartId)\n                    .orElseThrow(() -> new IllegalStateException(\"checked out cart has no transaction\"));\n        }\n",
+      "replace": "        // idempotency guard removed: retries now re-run completion\n"
+    }
+  ]
+}

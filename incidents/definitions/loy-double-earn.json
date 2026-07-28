@@ -1,0 +1,29 @@
+{
+  "id": "loy-double-earn",
+  "title": "Loyalty points awarded twice for the same transaction",
+  "category": "loyalty",
+  "severity": "high",
+  "affected_services": ["loyalty"],
+  "incident_report": "The loyalty service sometimes awards points twice for a single transaction id when an event is redelivered. The earn endpoint is not de-duplicating by transaction.",
+  "symptoms": [
+    "points balance doubled for one transaction",
+    "two earn ledger entries with the same transaction id",
+    "happens on event redelivery"
+  ],
+  "expected_root_cause": "earn is not idempotent; it does not check whether an EARN ledger entry already exists for the transaction before awarding",
+  "expected_files": [
+    "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java"
+  ],
+  "root_cause_keywords": ["idempotency", "duplicate", "ledger", "transaction", "earn"],
+  "fail_to_pass": {
+    "module": "loyalty-service",
+    "test": "com.retailforge.loyalty.LoyaltyServiceTest#retryingCheckoutShouldNotAwardLoyaltyPointsTwice"
+  },
+  "mutations": [
+    {
+      "file": "loyalty-service/src/main/java/com/retailforge/loyalty/service/LoyaltyService.java",
+      "search": "        if (ledger.existsByReferenceTransactionIdAndType(transactionId, LedgerEntry.Type.EARN)) {\n            log.info(\"skipping duplicate earn for txn={} customer={}\", transactionId, customerId);\n            return customer;\n        }\n",
+      "replace": "        // idempotency check removed\n"
+    }
+  ]
+}

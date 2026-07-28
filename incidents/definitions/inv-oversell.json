@@ -1,0 +1,29 @@
+{
+  "id": "inv-oversell",
+  "title": "Reservation oversells beyond available stock",
+  "category": "inventory",
+  "severity": "high",
+  "affected_services": ["inventory"],
+  "incident_report": "Reservations are being accepted for more units than are actually available, letting the store oversell items it does not have.",
+  "symptoms": [
+    "available stock goes negative",
+    "reservation accepted when quantity exceeds stock",
+    "no insufficient-stock error raised"
+  ],
+  "expected_root_cause": "the availability guard compares against the wrong bound, so a reservation larger than the available quantity is not rejected",
+  "expected_files": [
+    "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java"
+  ],
+  "root_cause_keywords": ["oversell", "available", "guard", "insufficient", "quantity"],
+  "fail_to_pass": {
+    "module": "inventory-service",
+    "test": "com.retailforge.inventory.InventoryServiceTest#cannotOversell"
+  },
+  "mutations": [
+    {
+      "file": "inventory-service/src/main/java/com/retailforge/inventory/service/InventoryService.java",
+      "search": "        if (level.getAvailable() < quantity) {",
+      "replace": "        if (level.getAvailable() < 0) {"
+    }
+  ]
+}

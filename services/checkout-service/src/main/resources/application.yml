@@ -1,0 +1,23 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: checkout-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/retailforge
+    username: retailforge
+    password: retailforge
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+clients:
+  pricing-url: http://localhost:8081
+  payment-url: http://localhost:8085
+  loyalty-url: http://localhost:8083
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

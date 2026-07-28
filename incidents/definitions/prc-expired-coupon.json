@@ -1,0 +1,29 @@
+{
+  "id": "prc-expired-coupon",
+  "title": "Expired coupon is accepted at checkout",
+  "category": "promotion",
+  "severity": "medium",
+  "affected_services": ["pricing"],
+  "incident_report": "A coupon that expired last year is still being accepted as valid by the promotions validate endpoint.",
+  "symptoms": [
+    "expired coupon validates as usable",
+    "promotion end date ignored",
+    "customers redeeming stale codes"
+  ],
+  "expected_root_cause": "the validate path does not check the promotion date window, so expired promotions pass validation",
+  "expected_files": [
+    "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java"
+  ],
+  "root_cause_keywords": ["expired", "date", "valid", "window", "coupon"],
+  "fail_to_pass": {
+    "module": "pricing-service",
+    "test": "com.retailforge.pricing.PricingServiceTest#expiredCouponIsInvalid"
+  },
+  "mutations": [
+    {
+      "file": "pricing-service/src/main/java/com/retailforge/pricing/service/PromotionService.java",
+      "search": "        if (!promo.isValidAt(Instant.now())) return new Validation(code, false, \"expired\");",
+      "replace": "        // expiry check removed"
+    }
+  ]
+}

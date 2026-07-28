@@ -1,0 +1,50 @@
+:root {
+  --bg: #0f1115;
+  --panel: #171a21;
+  --line: #262b36;
+  --text: #e6e8ec;
+  --muted: #8b93a3;
+  --ok: #3fb950;
+  --bad: #f0883e;
+  --accent: #4c8bf5;
+}
+* { box-sizing: border-box; }
+body { margin: 0; }
+.app {
+  font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  padding: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 20px; }
+h1 { margin: 0; font-size: 22px; }
+.sub { color: var(--muted); font-size: 13px; }
+h2 { font-size: 15px; margin: 0 0 12px; }
+h3 { font-size: 13px; color: var(--muted); margin: 18px 0 6px; text-transform: uppercase; letter-spacing: .04em; }
+section { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+th { color: var(--muted); font-weight: 500; }
+.grid { display: grid; grid-template-columns: 280px 1fr; gap: 16px; }
+.list { padding: 12px; }
+.row { display: flex; align-items: center; gap: 8px; width: 100%; background: none; border: none; color: var(--text); padding: 8px; border-radius: 6px; cursor: pointer; font-size: 13px; text-align: left; }
+.row:hover { background: #1e222b; }
+.row.active { background: #232838; }
+.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.dot.ok { background: var(--ok); }
+.dot.bad { background: var(--bad); }
+.id { font-family: ui-monospace, monospace; }
+.cfg { margin-left: auto; color: var(--muted); font-size: 11px; }
+.status { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; }
+.status.ok { background: rgba(63,185,80,.15); color: var(--ok); }
+.status.bad { background: rgba(240,136,62,.15); color: var(--bad); }
+.timeline { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.9; }
+.evidence { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.8; }
+.patch { font-size: 13px; font-family: ui-monospace, monospace; }
+.patch .lbl { color: var(--muted); display: inline-block; width: 120px; }
+.hint { color: var(--muted); font-size: 13px; }
+code { background: #10131a; padding: 1px 5px; border-radius: 4px; }
+@media (max-width: 720px) { .grid { grid-template-columns: 1fr; } }
