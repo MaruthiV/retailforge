@@ -1,0 +1,33 @@
+# local planning, literature notes, research, paper drafts — keep these out of the repo
+docs/
+!README.md
+
+# os / editor cruft
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# node
+node_modules/
+dist/
+build/
+*.log
+
+# java / maven / gradle
+target/
+.gradle/
+*.class
+
+# python / agent platform
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.pytest_cache/
+.mypy_cache/
+
+# infra / runtime
+*.pid
+pgdata/
