@@ -49,10 +49,11 @@ export default function App() {
     return ids;
   }, [data]);
 
-  const current = useMemo(
-    () => data?.results.find((r) => r.incident === selected) ?? null,
-    [data, selected]
-  );
+  const current = useMemo(() => {
+    if (!data || !selected) return null;
+    const rows = data.results.filter((r) => r.incident === selected);
+    return rows.find((r) => r.config === "retailforge") ?? rows[0] ?? null;
+  }, [data, selected]);
 
   if (!data) return <div className="app">loading…</div>;
 
@@ -105,7 +106,8 @@ export default function App() {
         <section className="list">
           <h2>Incidents</h2>
           {incidents.map((id) => {
-            const r = data.results.find((x) => x.incident === id)!;
+            const rows = data.results.filter((x) => x.incident === id);
+            const r = rows.find((x) => x.config === "retailforge") ?? rows[0];
             return (
               <button
                 key={id}
